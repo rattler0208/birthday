@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday Shailly 💖</title>
+<!--
+  ============ HOW TO USE (Abhijeet, read this first) ============
+  1. Put this file in a folder and name it index.html
+  2. Make a folder named "photos" next to it and put her pictures inside as
+     photo1.jpg ... photo6.jpg (or change the names in the PAGE 3 section)
+  3. Test on your phone. To send: upload the folder free on Netlify Drop or
+     GitHub Pages and give her the link on her birthday.
+  4. Search for the word "EDIT" to find everything you can change.
+  ================================================================
+-->
+<style>
+:root{--pink:#ff4d8d;--rose:#ffd6e7;--gold:#ffd27a}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:"Segoe UI",Roboto,Arial,sans-serif;color:#fff;overflow-x:hidden;
+  background:linear-gradient(160deg,#2a0830,#6b1747 55%,#c2417a) fixed;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+h1,h2{font-family:Georgia,"Times New Roman",serif;text-align:center}
+h2{font-size:1.6rem;margin:18px 0 6px;color:var(--rose)}
+p{line-height:1.6;text-align:center}
+#hearts{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.fh{position:absolute;bottom:-30px;animation:rise linear forwards;opacity:.7}
+@keyframes rise{to{transform:translateY(-110vh) rotate(30deg);opacity:0}}
+
+/* PAGES */
+.page{display:none;position:relative;z-index:1;max-width:480px;margin:0 auto;padding:16px 16px 90px;min-height:100vh}
+.page.active{display:block;animation:fade .7s}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
+.card{background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:16px;margin:14px 0}
+.btn{display:block;width:100%;padding:14px;margin:10px 0;border:0;border-radius:30px;font-size:1.05rem;font-weight:700;color:#fff;
+  background:linear-gradient(90deg,#ff4d8d,#ff8a5c);box-shadow:0 6px 18px rgba(0,0,0,.3);cursor:pointer}
+.btn:active{transform:scale(.97)}
+.lock{display:none}.lock.open{display:block;animation:fade 1s}
+.next{display:none}.next.open{display:block}
+.dots{position:fixed;bottom:10px;left:0;right:0;text-align:center;z-index:5;font-size:1.2rem;letter-spacing:6px}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.shake{animation:shake .4s}
+
+/* PAGE 1: HEART */
+.title{font-size:2rem;color:var(--gold);margin-top:10px;text-shadow:0 0 18px #ff4d8d}
+#heart{width:100%;height:auto;display:block;filter:drop-shadow(0 0 14px rgba(255,77,141,.8));animation:beat 1.6s infinite}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.04)}30%{transform:scale(1)}45%{transform:scale(1.03)}}
+#heart text{font-family:"Segoe UI","Noto Sans","Noto Sans Devanagari","Noto Sans Bengali","Noto Sans Gurmukhi","Noto Sans Malayalam",Arial,sans-serif;
+  font-weight:600;font-size:12px;opacity:0;animation:fade 1s forwards}
+
+/* PAGE 2: MEMORY MATCH */
+.mem{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+.mc{aspect-ratio:1;border:0;border-radius:14px;font-size:2rem;background:linear-gradient(135deg,#ff4d8d,#c2417a);color:#fff;box-shadow:0 4px 10px rgba(0,0,0,.3)}
+.mc.on{background:#fff}.mc.ok{background:#ffd6e7;opacity:.8}
+.tl{border-left:3px solid var(--pink);margin-left:10px;padding-left:16px}
+.tl div{margin:14px 0;position:relative}
+.tl div::before{content:"💗";position:absolute;left:-30px;top:0;font-size:.9rem}
+.tl b{color:var(--gold)}
+.big{font-size:2.2rem;color:var(--gold);font-weight:800;text-align:center}
+
+/* PAGE 3: CODE LOCK */
+#disp{font-size:2.4rem;letter-spacing:14px;text-align:center;background:rgba(0,0,0,.3);border-radius:14px;padding:10px;margin:10px 0;min-height:64px}
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.pad button{padding:16px 0;font-size:1.4rem;font-weight:700;border:0;border-radius:14px;background:rgba(255,255,255,.2);color:#fff}
+.pad button:active{background:var(--pink)}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.photo{background:#fff;padding:6px 6px 22px;border-radius:6px;box-shadow:0 6px 14px rgba(0,0,0,.4);color:#5a1a3a;font-size:.7rem;text-align:center;transform:rotate(-2deg)}
+.photo:nth-child(even){transform:rotate(2deg)}
+.photo img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:#ffe3ee}
+
+/* PAGE 4: BALLOONS + LETTER */
+#sky{position:relative;height:270px}
+.bl{position:absolute;font-size:3.4rem;border:0;background:none;animation:bob 2.5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-14px)}}
+#word{display:flex;justify-content:center;gap:8px;font-size:1.8rem;font-weight:800;color:var(--gold)}
+#word span{width:30px;border-bottom:3px solid #fff;text-align:center;min-height:38px}
+.letter{background:#fff7f0;color:#5a1a3a;border-radius:8px;padding:22px 18px;box-shadow:0 10px 30px rgba(0,0,0,.4);font-family:Georgia,serif}
+.letter p{margin:10px 0;text-align:left}
+.letter .iloveyou{font-size:1.6rem;text-align:center;color:#e0245e;font-weight:700}
+
+/* PAGE 5: GIFTS + CAKE */
+.boxes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.bx{aspect-ratio:1;font-size:2.6rem;border:0;border-radius:16px;background:rgba(255,255,255,.18)}
+#gmsg{min-height:30px;margin-top:8px;font-weight:600;color:var(--gold)}
+.cake{text-align:center;font-size:4rem}
+.candles{display:flex;justify-content:center;gap:14px;font-size:2.2rem;cursor:pointer}
+.ag{display:inline-block;width:70px;height:86px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:radial-gradient(circle at 30% 30%,#ffd6e7,#ff4d8d);
+  font-size:2.6rem;font-weight:800;line-height:86px;text-align:center;box-shadow:0 6px 14px rgba(0,0,0,.3);animation:bob 2.5s ease-in-out infinite}
+.cf{position:fixed;top:-20px;z-index:9;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+.cap{aspect-ratio:1;font-size:2.2rem;border:0;border-radius:50%;background:rgba(255,255,255,.18)}
+/* NEW PAGE: little film */
+.film{position:relative;height:570px;border-radius:22px;overflow:hidden;margin-top:12px;color:#7a2a4a;box-shadow:0 12px 34px rgba(0,0,0,.45);
+  background:radial-gradient(circle at 50% 28%,#fffaf3,#f8e4e8 75%)}
+.film.done{height:auto;min-height:570px}
+.sc{display:none}.sc.on{display:flex}
+#scA,#scB{position:absolute;inset:0}
+#scB{flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;text-align:center;background:linear-gradient(135deg,#ee1a82,#7d0b40);overflow:hidden}
+#scC{position:relative;flex-direction:column;align-items:center;padding:14px 12px 22px;gap:6px}
+.it{font-family:Georgia,serif;font-style:italic;letter-spacing:1px;color:#8a4a62}
+#bigheart{position:absolute;top:18%;left:50%;width:96px;margin-left:-48px;filter:drop-shadow(0 0 22px rgba(255,77,141,.7));animation:bob 2.2s ease-in-out infinite}
+#bigheart.burst{animation:bst .5s forwards}
+@keyframes bst{to{transform:scale(2.6);opacity:0}}
+#bow{position:absolute;left:50%;bottom:60px;width:120px;height:120px;margin-left:-60px}
+.arrow{position:absolute;left:50%;bottom:100px;width:5px;height:66px;margin-left:-2.5px;border-radius:3px;background:linear-gradient(#e0245e,#6b2d44);transform:translateY(0)}
+.arrow::before{content:"";position:absolute;top:-10px;left:-5px;border:7px solid transparent;border-bottom:12px solid #e0245e;border-top:0}
+#pullzone{position:absolute;left:0;right:0;bottom:0;height:52%;touch-action:none;cursor:grab}
+.pp{position:absolute;font-size:1.3rem;transition:transform .9s ease-out,opacity .9s;pointer-events:none}
+.wl{opacity:0;animation:fade 1s forwards}
+.hb{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:3.6rem;line-height:.95;letter-spacing:1px;opacity:0;animation:fade 1.2s forwards}
+.glow{position:absolute;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(255,226,150,.9),rgba(255,226,150,0) 70%);animation:gl 2.4s ease-in-out infinite}
+@keyframes gl{50%{transform:scale(1.35);opacity:.6}}
+#tree{width:100%;max-width:340px;height:auto}
+.tr{fill:none;stroke:#4a2330;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:dr 1.3s ease-out forwards}
+.tr.b{animation-delay:1.1s}
+@keyframes dr{to{stroke-dashoffset:0}}
+.ht{font-family:Arial,sans-serif;text-anchor:middle;transform-box:fill-box;transform-origin:center;animation:p2 .6s backwards}
+@keyframes p2{from{transform:scale(0);opacity:0}}
+.scr{font-family:"Segoe Script","Brush Script MT","Lucida Handwriting",cursive;font-size:2.5rem;color:#e0245e;text-shadow:0 0 14px rgba(255,77,141,.5)}
+.pframe{width:66%;margin:14px auto 0;background:#fff;padding:7px 7px 30px;border-radius:6px;box-shadow:0 8px 22px rgba(0,0,0,.35);transform:rotate(-2deg);opacity:0;animation:fade 1.4s 5.6s forwards}
+.pframe img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:#ffe3ee;color:#5a1a3a;font-size:.8rem}
+.pt{position:absolute;top:-24px;z-index:3;pointer-events:none;animation:fl2 6s linear forwards}
+@keyframes fl2{to{transform:translateY(900px) rotate(400deg)}}
+</style>
+
+</head>
+<body>
+<div id="hearts"></div>
+
+<!-- ============ PAGE 1 : BIRTHDAY WISH IN MANY LANGUAGES (heart) ============ -->
+<section class="page active" id="p1">
+  <h1 class="title">Happy Birthday<br>Shailly 🎂</h1>
+  <p>You are turning 17 today, my love 💖</p>
+  <!-- the heart is drawn by the script at the bottom -->
+  <svg id="heart" viewBox="-180 -135 360 320"></svg>
+  <button class="btn" onclick="go(6)">Open your surprise 💌</button>
+</section>
+
+<!-- ============ NEW PAGE (shown 2nd): "A LITTLE FILM" (bow & arrow, wish, blooming heart tree, her photo) ============
+     (its id is "p6" internally, but it appears right after page 1) -->
+<section class="page" id="p6">
+  <div class="film" id="film">
+    <!-- SCENE A: pull the bow and shoot the heart -->
+    <div class="sc on" id="scA">
+      <small class="it" style="position:absolute;top:9%;left:0;right:0;text-align:center">a little something, for you</small>
+      <svg id="bigheart" viewBox="0 0 100 92">
+        <defs><radialGradient id="hg" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#ffd0e4"/><stop offset=".45" stop-color="#ff5c9a"/><stop offset="1" stop-color="#c2185b"/></radialGradient></defs>
+        <path d="M50 88 C10 56 2 34 14 18 C26 4 44 10 50 26 C56 10 74 4 86 18 C98 34 90 56 50 88Z" fill="url(#hg)"/>
+        <ellipse cx="32" cy="26" rx="9" ry="5" fill="#fff" opacity=".55" transform="rotate(-30 32 26)"/>
+      </svg>
+      <svg id="bow" viewBox="0 0 120 120"><path d="M8 80 Q60 14 112 80" fill="none" stroke="#6b2d44" stroke-width="5" stroke-linecap="round"/>
+        <path id="str" d="M8 80 L60 80 L112 80" fill="none" stroke="#a0566f" stroke-width="2"/></svg>
+      <div class="arrow" id="arrow"></div>
+      <div id="pullzone"></div>
+      <small class="it" id="pr" style="position:absolute;bottom:18px;left:0;right:0;text-align:center;letter-spacing:4px;font-size:.7rem">PULL DOWN &amp; RELEASE</small>
+    </div>
+    <!-- SCENE B: pink wish screen -->
+    <div class="sc" id="scB">
+      <div class="glow"></div>
+      <small class="wl" style="animation-delay:.2s;letter-spacing:3px">make a wish…</small>
+      <div class="hb" style="animation-delay:.6s">Happy<br>Birthday</div>
+      <svg width="170" height="16" viewBox="0 0 170 16" class="wl" style="animation-delay:1.2s"><path d="M4 11 Q60 2 166 8" fill="none" stroke="#ffd27a" stroke-width="3" stroke-linecap="round"/></svg>
+      <small class="wl" style="animation-delay:1.5s">to someone worth celebrating</small>
+      <b class="wl" style="animation-delay:2s;color:#ffd27a;font-size:1.6rem;font-family:Georgia,serif">Shailly 💖</b>
+    </div>
+    <!-- SCENE C: the tree blooms -->
+    <div class="sc" id="scC">
+      <svg id="tree" viewBox="0 0 300 335">
+        <path class="tr" d="M150 330 C150 292 148 250 150 205" stroke-width="11"/>
+        <path class="tr b" d="M150 245 C140 225 120 208 98 192" stroke-width="5"/>
+        <path class="tr b" d="M150 238 C162 220 182 208 206 190" stroke-width="5"/>
+        <path class="tr b" d="M150 218 C148 192 150 172 150 150" stroke-width="5"/>
+        <path class="tr b" d="M149 208 C130 182 100 172 70 150" stroke-width="4"/>
+        <path class="tr b" d="M151 208 C170 182 200 172 230 150" stroke-width="4"/>
+        <g id="can"></g>
+      </svg>
+      <small class="it" style="opacity:0;animation:fade 1s 3.8s forwards">…make it count</small>
+      <div class="scr" style="opacity:0;animation:fade 1.2s 4.1s forwards">Happy Birthday</div>
+      <small class="it" style="opacity:0;animation:fade 1s 4.8s forwards">Here’s to a year that blooms 🌸</small>
+      <!-- ========== EDIT: HER PHOTO WITH THE BIRTHDAY CAP AND BALLOON ==========
+           Save that photo as photos/birthday.jpg (or change the name below). -->
+      <div class="pframe"><img src="photos.birthday.jpeg" alt="Shailly" onerror="this.alt='📷 add photos/birthday.jpg'"></div>
+    </div>
+  </div>
+  <button class="btn next" onclick="go(2)">Next page ➜</button>
+</section>
+
+<!-- ============ PAGE 2 : MEMORY MATCH GAME, then OUR STORY ============ -->
+<section class="page" id="p2">
+  <h2>🔑 Game 1: Match Your Favourites</h2>
+  <div class="card gate" id="g2"></div>
+  <div class="lock">
+    <h2>Our Little Story 📖</h2>
+    <div class="card"><div class="tl">
+      <div><b>Free Fire 🎮</b><br>It all started in a game. We were just friends, laughing and playing together.</div>
+      <div><b>Every day 📱</b><br>Then came calls and Instagram chats, and talking to you became my favourite part of the day.</div>
+      <div><b>21 September 2026 💍</b><br>You told me what you felt, and I said YES. Best “yes” of my life!</div>
+      <div><b>Hazaribagh ➜ Greater Noida 💞</b><br>We haven’t met yet, but my heart already knows where home is.</div>
+    </div></div>
+    <!-- EDIT: 21 Sept to 5 Dec = 75 days. Change the number if you ever change the dates. -->
+    <div class="card"><p>By your birthday, we complete</p><div class="big">75 days 💕</div><p>of being together, and so many more to come 🤍</p></div>
+  </div>
+  <button class="btn next" onclick="go(3)">Next page ➜</button>
+</section>
+
+<!-- ============ PAGE 3 : SECRET CODE LOCK, then YOUR PHOTOS ============ -->
+<section class="page" id="p3">
+  <h2>🔐 Game 2: The Secret Lock</h2>
+  <div class="card gate" id="g3">
+    <p>I locked your photos with a secret code 🤫<br>The code is the <b>day and month</b> you made me the happiest boy (like 0101 for 1 Jan).</p>
+    <div id="disp"></div>
+    <div class="pad" id="pad"></div>
+    <p id="hint" style="margin-top:8px;font-size:.9rem" onclick="this.textContent='Hint: it was in September 💗'">Need a hint? Tap here</p>
+  </div>
+  <div class="lock">
+    <h2>Beautiful Memories 📸</h2>
+    <div class="gallery">
+      <!-- ========== EDIT: ADD HER PHOTOS HERE ==========
+           1. Put her photos in the "photos" folder.
+           2. Change src="photos/photo1.jpg" to your file name.
+           3. Change the caption text under each photo.
+           To add MORE photos, copy one whole <div class="photo">...</div> block and paste it below. -->
+      <div class="photo"><img src="photos.photo1.jpg.jpeg" alt="Shailly" onerror="this.alt='📷 add photo1.jpg'">Caption 1 (EDIT)</div>
+      <div class="photo"><img src="photos.photo2.jpg.jpeg" alt="Shailly" onerror="this.alt='📷 add photo2.jpg'">Caption 2 (EDIT)</div>
+      <div class="photo"><img src="photos.photo3.jpg.jpeg" alt="Shailly" onerror="this.alt='📷 add photo3.jpg'">Caption 3 (EDIT)</div>
+      <div class="photo"><img src="photos.photo4.jpg.jpeg" alt="Shailly" onerror="this.alt='📷 add photo4.jpg'">Caption 4 (EDIT)</div>
+      <div class="photo"><img src="photos.photo5.jpg.jpeg" alt="Shailly" onerror="this.alt='📷 add photo5.jpg'">Caption 5 (EDIT)</div>
+      <div class="photo"><img src="photos.photo6.jpeg" alt="Shailly" onerror="this.alt='📷 add photo6.jpg'">Caption 6 (EDIT)</div>
+      <!-- ============ END OF PHOTOS ============ -->
+    </div>
+    <p style="margin-top:12px">Every picture of you makes my day brighter 🌸</p>
+  </div>
+  <button class="btn next" onclick="go(4)">Next page ➜</button>
+</section>
+
+<!-- ============ PAGE 4 : POP THE BALLOONS, then LOVE LETTER ============ -->
+<section class="page" id="p4">
+  <h2>🎈 Game 3: Pop the Balloons</h2>
+  <div class="card gate" id="g4">
+    <p>Pop all 7 balloons to see who they belong to 😉</p>
+    <div id="sky"></div>
+    <div id="word"></div>
+  </div>
+  <div class="lock">
+    <h2>A Letter For You 💌</h2>
+    <p>Tap the envelope to open it</p>
+    <button class="btn" id="env" style="font-size:4.5rem;background:none;box-shadow:none;animation:bob 2s infinite">💌</button>
+    <div class="letter" id="letter" style="display:none">
+      <p class="iloveyou">I love you so much, Shailly ❤️</p>
+      <!-- EDIT: change these lines to your own words, it will feel even more special -->
+      <p>Happy 17th birthday, my princess. I wish I could be there to hug you and see your smile in person.</p>
+      <p>We met virtually in  game, but you became the best thing that ever happened to me. You make my ordinary days feel special, and even the distance small when I hear your voice.</p>
+      <p>Thank you for being my friend, my love, and my happiness. I promise to always respect you, support you, and stand by you.</p>
+      <p>One day, we will meet and that will be best day of my life. Until then, every call and every chat is my gift to keep you smiling.</p>
+      <p>May this year bring you success, laughter, and all your dreams. You deserve the whole world.</p>
+      <p style="text-align:right">Forever yours,<br><b>Abhijeet 🤍</b></p>
+    </div>
+  </div>
+  <button class="btn next" onclick="go(5)">One last surprise ➜</button>
+</section>
+
+<!-- ============ PAGE 5 : FIND THE KEY IN THE GIFTS, then CAKE ============ -->
+<section class="page" id="p5">
+  <h2>🎁 Game 4: Find the Golden Key</h2>
+  <div class="card gate" id="g5">
+    <p>9 gifts are waiting for you. Only one hides the golden key 🔑</p>
+    <div class="boxes" id="boxes"></div>
+    <p id="gmsg"></p>
+  </div>
+  <div class="lock">
+    <h2>Make a Wish! 🎂</h2>
+    <div class="card">
+      <div style="text-align:center"><span class="ag">1</span> <span class="ag" style="animation-delay:.4s">7</span></div>
+      <div class="cake">🎂</div>
+      <div class="candles" id="candles"><span>🕯️</span><span>🕯️</span><span>🕯️</span></div>
+      <p style="margin-top:8px" id="wishmsg">Make a wish, then blow into your phone’s mic 🎤 (it never records anything). Or hold the button!</p>
+      <button class="btn" id="mic">🎤 Blow the candles</button>
+      <button class="btn" id="hold" style="background:rgba(255,255,255,.2)">👄 Or hold here to blow</button>
+    </div>
+    <div class="card" id="gifts" style="display:none">
+      <div style="font-size:3rem;text-align:center">🌹🍫🌯🍛</div>
+      <p>A white rose, Nestlé chocolates, a soya chaap roll and veg biryani. Whenever we finally meet, they’re all on me! 😋</p>
+    </div>
+    <div class="card">
+      <h2 style="margin-top:0">Why I Love You 💗</h2>
+      <p>Tap a heart to open a reason</p>
+      <div class="boxes" id="caps"></div>
+      <p id="rmsg" style="min-height:48px;margin-top:8px;font-weight:600;color:var(--gold)"></p>
+    </div>
+    <div class="card">
+      <h2 style="margin-top:0">Your Wish Jar ✨</h2>
+      <p>Tap a star to read a wish for you</p>
+      <div class="boxes" id="stars"></div>
+      <p id="wmsg" style="min-height:48px;margin-top:8px;font-weight:600;color:var(--gold)"></p>
+    </div>
+    <p style="font-size:1.2rem;margin-top:14px">Happy Birthday, Shailly 💖<br>— Your Abhijeet</p>
+    <button class="btn" onclick="go(1)">↻ See the beginning again</button>
+  </div>
+</section>
+
+<div class="dots" id="dots"></div>
+
+<script>
+/* ============ EDIT: BIRTHDAY WORDS IN DIFFERENT LANGUAGES ============ */
+var WORDS=["Happy Birthday","जन्मदिन मुबारक","Feliz Cumpleaños","Joyeux Anniversaire","Alles Gute zum Geburtstag","生日快乐",
+"お誕生日おめでとう","생일 축하해","С днём рождения","عيد ميلاد سعيد","Buon Compleanno","Feliz Aniversário",
+"Doğum günün kutlu olsun","Selamat Ulang Tahun","Χρόνια Πολλά","শুভ জন্মদিন","ਜਨਮ ਦਿਨ ਮੁਬਾਰਕ","Gelukkige Verjaardag",
+"Hyvää Syntymäpäivää","Grattis på födelsedagen","ജന്മദിനാശംസകൾ","Shailly"];
+
+/* ---------- PAGE 1: draw the heart and fill it, row by row, with the words ---------- */
+(function(){
+  var svg=document.getElementById("heart"),NS="http://www.w3.org/2000/svg",pts=[],d="";
+  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e}
+  for(var i=0;i<360;i++){ /* classic heart curve */
+    var t=i/360*2*Math.PI,x=16*Math.pow(Math.sin(t),3)*10,
+    y=-(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t))*10;
+    pts.push([x,y]);d+=(i?"L":"M")+x.toFixed(1)+" "+y.toFixed(1);
+  }
+  svg.appendChild(el("path",{d:d+"Z",fill:"rgba(255,77,141,.18)",stroke:"#ff8fb8","stroke-width":3}));
+  var cols=["#fff","#ffd6e7","#ffd27a","#ffb3d1"],row=0;
+  for(var Ry=-108;Ry<=160;Ry+=16,row++){
+    var xs=[];
+    for(var i=0;i<pts.length;i++){var a=pts[i],b=pts[(i+1)%pts.length];
+      if((a[1]<=Ry&&b[1]>Ry)||(b[1]<=Ry&&a[1]>Ry))xs.push(a[0]+(Ry-a[1])/(b[1]-a[1])*(b[0]-a[0]));}
+    xs.sort(function(p,q){return p-q});
+    for(var k=0;k+1<xs.length;k+=2){
+      var x0=xs[k],x1=xs[k+1],w=x1-x0-22;if(w<28)continue;
+      var tx=el("text",{x:(x0+x1)/2,y:Ry,"text-anchor":"middle","dominant-baseline":"central",fill:cols[row%4]});
+      tx.style.animationDelay=(row*0.15)+"s";svg.appendChild(tx);
+      var s="",n=WORDS.length;
+      for(var j=0;j<n*2;j++){
+        var wd=WORDS[(row*5+k*3+j)%n],test=s?s+" ♥ "+wd:wd;tx.textContent=test;
+        if(tx.getComputedTextLength()<=w)s=test;else if(s)break;
+      }
+      tx.textContent=s||"♥";
+      if(s.indexOf("♥")>0){tx.setAttribute("textLength",w);tx.setAttribute("lengthAdjust","spacing");}
+    }
+  }
+})();
+
+/* ---------- floating background hearts ---------- */
+setInterval(function(){
+  var h=document.createElement("div");h.className="fh";h.textContent=["💖","💗","🌸","🤍","✨"][Math.floor(Math.random()*5)];
+  h.style.left=Math.random()*100+"%";h.style.fontSize=(14+Math.random()*20)+"px";
+  h.style.animationDuration=(6+Math.random()*6)+"s";document.getElementById("hearts").appendChild(h);
+  setTimeout(function(){h.remove()},12000);
+},600);
+
+/* ---------- navigation + unlocking ---------- */
+function go(n){
+  document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active")});
+  document.getElementById("p"+n).classList.add("active");window.scrollTo(0,0);
+  var order=[1,6,2,3,4,5],d="";  /* page order: 1, then the new cap page (p6), then 2,3,4,5 */
+  order.forEach(function(p){d+=(p==n?"💖":"🤍")});document.getElementById("dots").textContent=d;
+}
+go(1);
+function unlock(n,msg){
+  var p=document.getElementById("p"+n);
+  p.querySelector(".gate").innerHTML="<h2 style='margin:0'>🔓 "+msg+"</h2>";
+  p.querySelector(".lock").classList.add("open");
+  var b=p.querySelector(".next");if(b)b.classList.add("open");
+}
+
+
+/* ---------- GAME 1: memory match ---------- */
+(function(){
+  var g=document.getElementById("g2"),em=["🎮","🌹","🍫","🌯","🍛","💖"],open=[],done=0,busy=false;
+  var cards=em.concat(em).sort(function(){return Math.random()-.5});
+  g.innerHTML="<p>Flip the cards and match the pairs of things you love 💕</p>";
+  var grid=document.createElement("div");grid.className="mem";g.appendChild(grid);
+  cards.forEach(function(e){
+    var c=document.createElement("button");c.className="mc";c.textContent="❓";grid.appendChild(c);
+    c.onclick=function(){
+      if(busy||c.classList.contains("on")||c.classList.contains("ok"))return;
+      c.classList.add("on");c.textContent=e;open.push([c,e]);
+      if(open.length==2){
+        var a=open[0],b=open[1];open=[];
+        if(a[1]==b[1]){a[0].className=b[0].className="mc ok";if(++done==6)setTimeout(function(){unlock(2,"You did it! Key found 🥰")},700);}
+        else{busy=true;setTimeout(function(){a[0].className=b[0].className="mc";a[0].textContent=b[0].textContent="❓";busy=false},800);}
+      }
+    };
+  });
+})();
+
+/* ---------- GAME 2: secret code lock ---------- */
+/* EDIT: the code is 2109 = 21 September (the day you became a couple) */
+(function(){
+  var CODE="2109",val="",disp=document.getElementById("disp"),pad=document.getElementById("pad");
+  function draw(){disp.textContent=val.padEnd(4,"•").split("").join(" ")}
+  draw();
+  ["1","2","3","4","5","6","7","8","9","C","0","⌫"].forEach(function(k){
+    var b=document.createElement("button");b.textContent=k;pad.appendChild(b);
+    b.onclick=function(){
+      if(k=="C")val="";else if(k=="⌫")val=val.slice(0,-1);else if(val.length<4)val+=k;
+      draw();
+      if(val.length==4){
+        if(val==CODE)setTimeout(function(){unlock(3,"Lock opened! 🥰")},400);
+        else{disp.classList.add("shake");setTimeout(function(){disp.classList.remove("shake");val="";draw()},500);}
+      }
+    };
+  });
+})();
+
+/* ---------- GAME 3: pop the balloons to spell her name ---------- */
+(function(){
+  var name="SHAILLY",sky=document.getElementById("sky"),word=document.getElementById("word"),left=name.length;
+  var pos=[[6,4],[38,0],[70,6],[20,40],[56,44],[4,76],[68,74]];
+  name.split("").forEach(function(ch,i){
+    var sp=document.createElement("span");word.appendChild(sp);
+    var b=document.createElement("button");b.className="bl";b.textContent="🎈";
+    b.style.left=pos[i][0]+"%";b.style.top=pos[i][1]+"%";b.style.filter="hue-rotate("+(i*50)+"deg)";
+    b.style.animationDelay=(i*0.3)+"s";sky.appendChild(b);
+    b.onclick=function(){b.textContent="💥";sp.textContent=ch;
+      setTimeout(function(){b.remove()},200);
+      if(--left==0)setTimeout(function(){unlock(4,"S-H-A-I-L-L-Y, this letter is for you 💌")},900);};
+  });
+})();
+
+/* ---------- GAME 4: find the golden key among 9 gifts ---------- */
+(function(){
+  var items=[["🍫","A Nestlé chocolate for you!"],["🌹","A white rose just for you!"],["🌯","One soya chaap roll, extra chatpata!"],
+  ["🍛","A plate of veg biryani!"],["🧸","A big teddy hug!"],["💌","A virtual kiss 😘"],["🌟","You are my star!"],["🎀","Nothing here, but you are the best gift!"]];
+  items.push(["🔑","You found the golden key!"]);
+  items.sort(function(){return Math.random()-.5});
+  var box=document.getElementById("boxes"),msg=document.getElementById("gmsg");
+  items.forEach(function(it){
+    var b=document.createElement("button");b.className="bx";b.textContent="🎁";box.appendChild(b);
+    b.onclick=function(){
+      if(b.dataset.o)return;b.dataset.o=1;b.textContent=it[0];msg.textContent=it[1];
+      if(it[0]=="🔑")setTimeout(function(){unlock(5,"Golden key found! 🥰")},1100);
+    };
+  });
+})();
+
+/* ---------- confetti (used by the envelope and the candles) ---------- */
+function confetti(){
+  for(var i=0;i<40;i++){var c=document.createElement("div");c.className="cf";
+    c.textContent=["🎉","💖","✨","🌸","🎊"][i%5];c.style.left=Math.random()*100+"%";c.style.fontSize=(16+Math.random()*16)+"px";
+    c.style.animationDuration=(2.5+Math.random()*2.5)+"s";document.body.appendChild(c);
+    (function(x){setTimeout(function(){x.remove()},5500)})(c);}
+}
+/* ---------- NEW PAGE: "a little film" (bow, wish, blooming tree, photo) ---------- */
+(function(){
+  var film=document.getElementById("film"),A=document.getElementById("scA"),B=document.getElementById("scB"),C=document.getElementById("scC"),
+  heart=document.getElementById("bigheart"),arrow=document.getElementById("arrow"),str=document.getElementById("str"),
+  zone=document.getElementById("pullzone"),sy=null,pull=0,shot=false,started=false;
+  function setPull(p){pull=p;arrow.style.transform="translateY("+p+"px)";str.setAttribute("d","M8 80 L60 "+(80+p)+" L112 80");}
+  zone.onpointerdown=function(e){if(shot)return;sy=e.clientY;try{zone.setPointerCapture(e.pointerId)}catch(x){}};
+  zone.onpointermove=function(e){if(sy===null||shot)return;setPull(Math.max(0,Math.min(70,e.clientY-sy)));};
+  zone.onpointerup=function(){if(sy===null||shot)return;sy=null;shoot();};
+  zone.onpointercancel=function(){sy=null;setPull(0)};
+  function shoot(){
+    shot=true;var a=arrow.getBoundingClientRect(),h=heart.getBoundingClientRect();
+    var dy=(h.top+h.height/2)-a.top;
+    str.setAttribute("d","M8 80 L60 80 L112 80");
+    arrow.style.transition="transform .55s cubic-bezier(.4,0,.9,.7)";arrow.style.transform="translateY("+(pull+dy)+"px)";
+    document.getElementById("pr").style.display="none";
+    setTimeout(burst,540);
+  }
+  function burst(){
+    arrow.style.display="none";heart.classList.add("burst");
+    var f=A.getBoundingClientRect(),h=heart.getBoundingClientRect(),cx=h.left-f.left+h.width/2,cy=h.top-f.top+h.height/2;
+    for(var i=0;i<22;i++){var p=document.createElement("span");p.className="pp";p.textContent=["💗","✨","💖","🌸"][i%4];
+      p.style.left=cx+"px";p.style.top=cy+"px";A.appendChild(p);
+      (function(p,i){setTimeout(function(){var an=i/22*6.283,r=90+Math.random()*80;
+        p.style.transform="translate("+Math.cos(an)*r+"px,"+Math.sin(an)*r+"px)";p.style.opacity=0;},30)})(p,i);}
+    setTimeout(function(){A.classList.remove("on");B.classList.add("on");setTimeout(toC,4200);},750);
+  }
+  function toC(){
+    if(started)return;started=true;B.classList.remove("on");C.classList.add("on");film.classList.add("done");
+    var can=document.getElementById("can"),NS="http://www.w3.org/2000/svg",cols=["#ff4d8d","#ff7aa8","#ffc24a","#e0245e","#ffb3d1","#ffd27a"],n=0;
+    while(n<150){ /* random points inside a heart shape */
+      var x=Math.random()*2.6-1.3,y=Math.random()*2.5-1.2;
+      if(Math.pow(x*x+y*y-1,3)-x*x*y*y*y>0)continue;n++;
+      var t=document.createElementNS(NS,"text");t.setAttribute("class","ht");t.textContent="♥";
+      t.setAttribute("x",150+x*92);t.setAttribute("y",118-y*78);t.setAttribute("fill",cols[n%6]);t.setAttribute("font-size",13+Math.random()*11);
+      t.style.animationDelay=(1.9+(y+1.2)*0.55+Math.random()*0.25)+"s";can.appendChild(t);
+    }
+    var pet=setInterval(function(){var p=document.createElement("div");p.className="pt";p.textContent=["🌸","💗","🌷"][Math.floor(Math.random()*3)];
+      p.style.left=Math.random()*95+"%";p.style.fontSize=(12+Math.random()*10)+"px";film.appendChild(p);setTimeout(function(){p.remove()},6200);},450);
+    setTimeout(function(){document.querySelector("#p6 .next").classList.add("open");confetti();},6200);
+  }
+  B.onclick=toC; /* tap the pink screen to skip ahead */
+})();
+
+/* ---------- PAGE 4: tap the envelope to open the letter ---------- */
+document.getElementById("env").onclick=function(){
+  this.style.display="none";document.getElementById("letter").style.display="block";confetti();
+};
+
+/* ---------- PAGE 5: candles. Blow into the mic, or hold the button ---------- */
+var out=0;
+function blow(){
+  var c=document.querySelector("#candles span:not(.off)");if(!c)return;
+  c.textContent="💨";c.className="off";
+  if(++out==3){document.getElementById("wishmsg").textContent="🎉 Your wish will come true, I promise! 🎉";
+    document.getElementById("gifts").style.display="block";confetti();}
+}
+document.querySelectorAll("#candles span").forEach(function(c){c.onclick=blow});
+document.getElementById("mic").onclick=function(){
+  var m=document.getElementById("wishmsg");
+  if(!navigator.mediaDevices){m.textContent="Mic isn’t available here. Please hold the button below 👄";return}
+  navigator.mediaDevices.getUserMedia({audio:true}).then(function(s){
+    var ac=new (window.AudioContext||window.webkitAudioContext)(),an=ac.createAnalyser(),buf,last=0;
+    ac.createMediaStreamSource(s).connect(an);buf=new Uint8Array(an.fftSize);m.textContent="Now blow gently on your phone 💨";
+    (function loop(){
+      an.getByteTimeDomainData(buf);var mx=0;
+      for(var i=0;i<buf.length;i++)mx=Math.max(mx,Math.abs(buf[i]-128));
+      if(mx>45&&Date.now()-last>600){last=Date.now();blow();}
+      if(out<3)requestAnimationFrame(loop);else s.getTracks().forEach(function(t){t.stop()});
+    })();
+  }).catch(function(){m.textContent="No mic access. Please hold the button below 👄"});
+};
+var hd;
+var hb=document.getElementById("hold");
+hb.onpointerdown=function(){blow();hd=setInterval(blow,800)};
+hb.onpointerup=hb.onpointerleave=function(){clearInterval(hd)};
+
+/* ---------- PAGE 5: reasons + wish jar ---------- */
+/* EDIT: write your own reasons and wishes here, they will feel even more special */
+var REASONS=["Your voice makes my whole day better 🎧","You were brave enough to tell me how you felt 💍","You make me smile even on tired days 😊",
+"I love how happy chatpate street food makes you 🌯","Talking to you feels like home 🏡","Because you are simply you, and that is perfect 🤍"];
+var WISHES=["May all your dreams come true ✨","May you always smile like today 😊","May your exams and goals go great 📚","May we meet very soon 🥹","May this year bring you only happiness 🎉","May you always be loved, just like I love you 💖"];
+function tiles(id,icon,list,out){
+  var box=document.getElementById(id);
+  list.forEach(function(t){var b=document.createElement("button");b.className="cap";b.textContent=icon;box.appendChild(b);
+    b.onclick=function(){b.textContent="💖";document.getElementById(out).textContent=t};});
+}
+tiles("caps","💗",REASONS,"rmsg");tiles("stars","⭐",WISHES,"wmsg");
+</script>
+</body>
+</html>
